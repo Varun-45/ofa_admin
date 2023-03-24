@@ -247,9 +247,9 @@ const Profile = () => {
                                                 <div>
                                                 </div>
 
-                                            </div>
+                                            </div><Text size="5xl" textAlign="center" ><b>Booked Appointments</b></Text>
                                             <table class="responsive-table" style={{ marginTop: "15px" }}>
-                                                <Text size="5xl" textAlign="center" ><b>Booked Appointments</b></Text>
+
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Name</th>
@@ -277,7 +277,7 @@ const Profile = () => {
                                                                             <td data-title='Condition'>{a.PatientCondition}</td>
                                                                             <td data-title='Phone'>{a.PatientPhone}</td>
                                                                             <td data-title='Time'>{a.Time}</td>
-                                                                            <td data-title='Prescription'><a href={a.Prescription} > Click here</a></td>
+                                                                            <td data-title='Prescription'><a href={a.Prescription !== false ? a.Prescription : ''} > Click here</a></td>
 
                                                                         </tr>
 

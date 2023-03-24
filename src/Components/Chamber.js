@@ -89,7 +89,7 @@ const Chamber = () => {
                                                     <h2>
                                                         <AccordionButton>
                                                             <Box as="span" flex='1' textAlign='left'>
-                                                                Section 1 title
+                                                                Doctors
                                                             </Box>
                                                             <AccordionIcon />
                                                         </AccordionButton>
