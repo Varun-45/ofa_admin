@@ -10,13 +10,14 @@ import { useParams } from 'react-router';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
-import { Text } from '@chakra-ui/react';
+import { Badge, Text, Toast, useToast } from '@chakra-ui/react';
 const Profile = () => {
     let { id } = useParams();
     console.log(id);
     const [sub, setSub] = useState("");
     const [List, setList] = useState([]);
     const [Data, setData] = useState([]);
+    const toast = useToast()
     useEffect(() => {
 
         onValue(ref(db, "Users"), snapshot => {
@@ -55,7 +56,13 @@ const Profile = () => {
                 }
 
             });
-            window.alert("User removed");
+            toast({
+                status: "success",
+                title: `Doctor removed`,
+                position: "top",
+                duration: "4000",
+                isClosable: true
+            })
             window.location.replace("/")
 
         }
@@ -72,6 +79,15 @@ const Profile = () => {
         set(ref(db, `/Users/${id}/Status/`), {
             status: true
         })
+
+        toast({
+            status: "success",
+            title: `Doctor approved`,
+            position: "top",
+            duration: "4000",
+            isClosable: true
+        })
+
 
 
     }
@@ -156,7 +172,6 @@ const Profile = () => {
                                                 No appointments availavable
                                             </div>
                                             <div>
-
                                             </div>
 
 
@@ -259,7 +274,7 @@ const Profile = () => {
                                                         <th scope="col">Phone</th>
                                                         <th scope="col"> Time slot</th>
                                                         <th scope="col">Prescreption</th>
-                                                        <th scope="col">Points</th>
+                                                        <th scope="col">Payment Status</th>
                                                     </tr>
                                                 </thead>
 
@@ -279,6 +294,7 @@ const Profile = () => {
                                                                             <td data-title='Time'>{a.Time}</td>
                                                                             <td data-title='Prescription'><a href={a.Prescription !== false ? a.Prescription : ''} > Click here</a></td>
 
+                                                                            <td data-title='Status'> {a.position ? a.position.position === "done" ? <Badge colorScheme='green'>Paid</Badge> : <Badge colorScheme='red'>Cancelled</Badge> : <Badge colorScheme='orange'>Unpaid</Badge>}</td>
                                                                         </tr>
 
                                                                     </>
@@ -314,7 +330,7 @@ const Profile = () => {
                                                                                     Remove User
                                                                                 </Button>
 
-                                                                                <Button variant="success" onClick={update} name="submit" type="submit" id="contact-submit" data-submit="...Sending" >Approve</Button>
+                                                                                <Button variant="success" onClick={update} name="submit" type="submit" id="contact-submit" data-submit="...Sending"  >Approve</Button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
