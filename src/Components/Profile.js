@@ -268,7 +268,7 @@ const Profile = () => {
 
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">Sr.</th>
+
                                                         <th scope="col">Name</th>
                                                         <th scope="col" >Disease</th>
                                                         <th scope="col">Date</th>
@@ -291,7 +291,7 @@ const Profile = () => {
                                                                 return (
                                                                     <>
                                                                         <tr>
-                                                                            <td data-title='sr'>{i + 1}</td>
+
                                                                             <th scope='row'>{a.PatientName}</th>
                                                                             <td data-title='Disease'>{a.Disease}</td>
                                                                             <td data-title='Date'>{a.Date}</td>
