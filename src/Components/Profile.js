@@ -10,11 +10,12 @@ import { useParams } from 'react-router';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
-import { Badge, Text, Toast, useToast } from '@chakra-ui/react';
+import { Badge, Center, Text, Toast, useToast } from '@chakra-ui/react';
 const Profile = () => {
     let { id } = useParams();
     console.log(id);
     const [sub, setSub] = useState("");
+    const [total, settotal] = useState(0);
     const [List, setList] = useState([]);
     const [Data, setData] = useState([]);
     const toast = useToast()
@@ -274,13 +275,16 @@ const Profile = () => {
                                                         <th scope="col">Phone</th>
                                                         <th scope="col"> Time slot</th>
                                                         <th scope="col">Prescreption</th>
+                                                        <th scope="col">Amount</th>
                                                         <th scope="col">Payment Status</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
                                                     {
+
                                                         Object.values((Object.values(doc.DoctorsAppointments).map((d, index) => {
+
                                                             return Object.values(d).map((a, index) => {
                                                                 console.log(a.Date)
                                                                 return (
@@ -293,7 +297,7 @@ const Profile = () => {
                                                                             <td data-title='Phone'>{a.PatientPhone}</td>
                                                                             <td data-title='Time'>{a.Time}</td>
                                                                             <td data-title='Prescription'><a href={a.Prescription !== false ? a.Prescription : ''} > Click here</a></td>
-
+                                                                            <td data-title='Amount'>{1.03 * doc.fees + Math.max(0.04 * doc.fees, 20)}</td>
                                                                             <td data-title='Status'> {a.position ? a.position.position === "done" ? <Badge colorScheme='green'>Paid</Badge> : <Badge colorScheme='red'>Cancelled</Badge> : <Badge colorScheme='orange'>Unpaid</Badge>}</td>
                                                                         </tr>
 
@@ -310,7 +314,6 @@ const Profile = () => {
                                                     }
                                                 </tbody>
                                             </table>
-
                                             <section >
 
                                                 <div class="container my-5 py-40 text-dark">

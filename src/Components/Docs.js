@@ -109,6 +109,7 @@ const Docs = () => {
 
                                                 <a href={"/page/" + doc.uid}><Button variant="primary" > View Appointments</Button></a></td>
                                             <td data-title=" Location"> {doc.location}</td>
+
                                         </tr>
 
                                     </>
