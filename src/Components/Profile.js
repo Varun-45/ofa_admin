@@ -286,12 +286,12 @@ const Profile = () => {
 
                                                         Object.values((Object.values(doc.DoctorsAppointments).map((d, index) => {
 
-                                                            return Object.values(d).map((a, index) => {
+                                                            return Object.values(d).map((a, i) => {
                                                                 console.log(a.Date)
                                                                 return (
                                                                     <>
                                                                         <tr>
-                                                                            <td data-title='sr'>{index + 1}</td>
+                                                                            <td data-title='sr'>{i + 1}</td>
                                                                             <th scope='row'>{a.PatientName}</th>
                                                                             <td data-title='Disease'>{a.Disease}</td>
                                                                             <td data-title='Date'>{a.Date}</td>
